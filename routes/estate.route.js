@@ -1,6 +1,6 @@
 const Router = require('express')
 const {estateController} = require('../controllers/estate.controller')
-const multerMW = require('../middleware/image.middleware')
+const multerMW = require('../middleware/multer.middleware')
 
 const router = Router();
 
