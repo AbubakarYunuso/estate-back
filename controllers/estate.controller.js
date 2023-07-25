@@ -27,7 +27,7 @@ module.exports.estateController = {
         address:req.body.address,
         rooms: req.body.rooms,
         area: req.body.area,
-        price:req.body.type,
+        price:req.body.price,
         type: req.body.type,
         ready: req.body.ready,
         rented:req.body.rented,
