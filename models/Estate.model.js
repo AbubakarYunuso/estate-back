@@ -1,17 +1,54 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const estateSchema = mongoose.Schema({
-    image:String,
-    rooms: Number,
-    price:Number,
-    desc:String,
-    size:String,
-    favorite: {
-        type: mongoose.SchemaTypes.ObjectId,
-        ref: 'User'
-    }
-})
+
 
 const Estate = mongoose.model('Estate',estateSchema)
 
 module.exports = Estate
+
+  image: [],
+  address: {
+    type: String,
+    default: "",
+  },
+  objectId:[
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BuldingObject"
+    }
+  ]
+  ,
+  rooms: {
+    type: Number,
+    default: 0,
+  },
+  area: {
+    type: String,
+    default: "",
+  },
+  price: {
+    type: Number,
+    default: 0,
+  },
+  type: {
+    type: String,
+    default: "",
+  },
+  ready: {
+    type: String,
+    default: "",
+  },
+  rented: {
+    type: Boolean,
+    default: false,
+  },
+  desc: {
+    type: String,
+    default: "",
+  },
+});
+
+const Estate = mongoose.model("Estate", estateSchema);
+
+module.exports = Estate;
+
