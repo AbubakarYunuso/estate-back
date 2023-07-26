@@ -26,4 +26,6 @@ router.post(
 //--------------Удалиние User------------------  
   router.delete("/user/:id", authMiddleware, userController.deleteUserById);
 
+router.post('/addFavorites/:id', userController.addFavorites)
+
   module.exports = router;

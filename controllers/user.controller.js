@@ -3,6 +3,19 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 module.exports.userController = {
+  addFavorites: async (req,res) => {
+    try {
+      const favorites = await User.findByIdAndUpdate(req.params.id, {
+        $push:{
+          favorites: req.body.favorites
+        }
+     
+      }, {new: true})
+      res.json(favorites);
+    } catch (error) {
+      console.log(error);
+    }
+  },
   getUser: async (req, res) => {
     try {
       const users = await User.find();
@@ -43,11 +56,11 @@ module.exports.userController = {
     const { email, password } = req.body;
     const condidate = await User.findOne({ email });
     if (!condidate) {
-      return res.status(401).json({ error: "Неверный email" });
+      return res.status(401).json({ error: "Неверный email или пароль" });
     }
     const valid = await bcrypt.compare(password, condidate.password);
     if (!valid) {
-      return res.status(401).json({ error: "Неверный пароль" });
+      return res.status(401).json({ error: "Неверный email или пароль" });
     }
     const payload = {
       id: condidate._id,
