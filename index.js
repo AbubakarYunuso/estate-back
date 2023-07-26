@@ -14,7 +14,6 @@ app.use('images',express.static('images'))
 app.use(require("./routes/user.route"));
 app.use(require('./routes/estate.route'))
 
-
 mongoose
   .connect(process.env.MONGO_SERVER)
   
