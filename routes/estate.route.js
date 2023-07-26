@@ -6,7 +6,7 @@ const router = Router();
 
 router.get('/estates', estateController.getEstates);
 router.get('/estates/:id', estateController.getEstatesById);
-router.post('/estates', multerMW.array('image',5), estateController.postEstate);
+router.post('/estates', multerMW.single('image'), estateController.postEstate);
 router.patch('/estates/edit/:id', estateController.patchEstate);
 router.delete('/estateDel/:id',estateController.deleteEstate)
 

@@ -33,6 +33,7 @@ module.exports.estateController = {
         rented,
         desc,
         objectId,
+
       })
       res.json(estate);
     } catch (error) {
