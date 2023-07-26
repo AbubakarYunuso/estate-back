@@ -20,18 +20,19 @@ module.exports.estateController = {
   },
 
   postEstate: async (req, res) => {
-    // console.log(req);
+   const { address, rooms, area,price, type, ready, rented, desc, objectId  } = req.body
     try {
       const estate = await Estate.create({
         image:req.files.path,
-        address:req.body.address,
-        rooms: req.body.rooms,
-        area: req.body.area,
-        price:req.body.price,
-        type: req.body.type,
-        ready: req.body.ready,
-        rented:req.body.rented,
-        desc:req.body.desc
+        address,
+        rooms,
+        area,
+        price,
+        type,
+        ready,
+        rented,
+        desc,
+        objectId,
       })
       res.json(estate);
     } catch (error) {
@@ -40,19 +41,21 @@ module.exports.estateController = {
   },
 
   patchEstate: async(req, res)=>{
+    const { address, rooms, area,price, type, ready, rented, desc, objectId  } = req.body
     try {
         const estate = await Estate.findByIdAndUpdate(
             req.params.id,
             {
                 image:req.files.path,
-                address:req.body.address,
-                rooms: req.body.rooms,
-                area: req.body.area,
-                price:req.body.type,
-                type: req.body.type,
-                ready: req.body.ready,
-                rented:req.body.rented,
-                desc:req.body.desc
+                address,
+                rooms,
+                area,
+                price,
+                type,
+                ready,
+                rented,
+                desc,
+                objectId
 
             },
           {new:true}
