@@ -9,10 +9,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(require('./routes/buldingObject.route.js'))
-app.use('images',express.static('images'))
+app.use('/images',express.static('images'))
 
 app.use(require("./routes/user.route"));
 app.use(require('./routes/estate.route'))
+app.use(require('./routes/submitMail.route.js'))
 
 
 mongoose

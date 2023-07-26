@@ -1,20 +1,15 @@
 const mongoose = require('mongoose')
 
 const estateSchema = mongoose.Schema({
-    image: [],
-    address:String,
+    image:String,
     rooms: Number,
-    area: String,
     price:Number,
-    type:String,
-    ready:String,
-    rented:{
-        type:Boolean,
-        default:false
-    },
-    desc:String
-
-
+    desc:String,
+    size:String,
+    favorite: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'User'
+    }
 })
 
 const Estate = mongoose.model('Estate',estateSchema)

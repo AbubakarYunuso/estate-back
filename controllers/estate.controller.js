@@ -23,7 +23,7 @@ module.exports.estateController = {
     // console.log(req);
     try {
       const estate = await Estate.create({
-        image:req.files.path,
+        image:req.file.path,
         address:req.body.address,
         rooms: req.body.rooms,
         area: req.body.area,
