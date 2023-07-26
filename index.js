@@ -13,7 +13,7 @@ app.use('images',express.static('images'))
 
 app.use(require("./routes/user.route"));
 app.use(require('./routes/estate.route'))
-
+app.use(require("./routes/baskets.route.js"))
 
 mongoose
   .connect(process.env.MONGO_SERVER)
