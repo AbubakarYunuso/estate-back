@@ -6,6 +6,13 @@ const estateSchema = mongoose.Schema({
     type: String,
     default: "",
   },
+  objectId:[
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BuldingObject"
+    }
+  ]
+  ,
   rooms: {
     type: Number,
     default: 0,
