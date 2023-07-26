@@ -1,11 +1,6 @@
 const mongoose = require("mongoose");
 
-
-
-const Estate = mongoose.model('Estate',estateSchema)
-
-module.exports = Estate
-
+const estateSchema = mongoose.Schema({
   image: [],
   address: {
     type: String,
@@ -51,4 +46,3 @@ module.exports = Estate
 const Estate = mongoose.model("Estate", estateSchema);
 
 module.exports = Estate;
-
