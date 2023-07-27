@@ -9,7 +9,8 @@ module.exports.buldingObjectController = {
 				name: req.body.name,
 				final: req.body.final,
 				geo: req.body.geo,
-				image: req.files.map(item => item.path)
+				image: req.files.map(item => item.path),
+				discript: req.body.discript
 			})
 			res.json(buldingObject)
 		} catch (error) {
@@ -50,7 +51,8 @@ module.exports.buldingObjectController = {
 				name: req.body.name,
 				final: req.body.final,
 				geo: req.body.geo,
-				image: req.files.map(item => item.path)
+				image: req.files.map(item => item.path),
+				discript: req.body.discript
 			})
 			res.json(buldingObject)
 		} catch (error) {
