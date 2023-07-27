@@ -10,8 +10,8 @@ module.exports.commentsController={
         }
     },
     postComments: async(req, res)=>{
-        const {text} = req.body
-        const {user}=req.user.id
+        const {text,user} = req.body
+        // const {user}=req.user.id
         try {
             
             const comments = await Comments.create({
