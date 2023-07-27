@@ -5,7 +5,8 @@ const buldingObject = mongoose.Schema({
     name: String,
     final: Boolean,
     geo: String,
-    image:[String]
+    image:[String],
+    discript: String
 })
 const BuldingObject = mongoose.model('BuldingObject' , buldingObject)
 
