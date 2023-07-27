@@ -7,6 +7,7 @@ router.get('/comments',commentsController.getComments)
 router.post('/comments',authMiddleware,commentsController.postComments)
 router.delete('/comments/:id',authMiddleware,commentsController.deleteComments)
 
+
 module.exports = router;
 
-// НА ВЕТКЕ МЭЙН 
+
