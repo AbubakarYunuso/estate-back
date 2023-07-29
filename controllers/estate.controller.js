@@ -23,7 +23,7 @@ module.exports.estateController = {
    const { address, rooms, area,price, type, ready, rented, desc, objectId  } = req.body
     try {
       const estate = await Estate.create({
-        image:req.files.path,
+        image:req.file.path,
         address,
         rooms,
         area,
@@ -47,7 +47,7 @@ module.exports.estateController = {
         const estate = await Estate.findByIdAndUpdate(
             req.params.id,
             {
-                image:req.files.path,
+                image:req.file.path,
                 address,
                 rooms,
                 area,
