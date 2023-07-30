@@ -26,6 +26,10 @@ const userShema = mongoose.Schema({
       ref: "Estate",
     },
   ],
+  comparison: {
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"Estate"
+  }
 });
 const User = mongoose.model("User", userShema);
 module.exports = User;
