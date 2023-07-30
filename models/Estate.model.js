@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const estateSchema = mongoose.Schema({
-  image: [],
+  image: String,
   address: {
     type: String,
     default: "",

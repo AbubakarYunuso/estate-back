@@ -1,22 +1,62 @@
 const User = require("../models/User.model");
 const bcrypt = require("bcrypt");
+const { json } = require("express");
 const jwt = require("jsonwebtoken");
 
 module.exports.userController = {
-  addFavorites: async (req,res) => {
+  addFavorites: async (req, res) => {
     try {
-      const favorites = await User.findByIdAndUpdate(req.params.id, {
-        $push:{
-          favorites: req.body.favorites
-        }
-     
-      }, {new: true})
-      res.json(favorites);
+      const { favorites } = req.body;
+      const userId = req.params.id;
+      const user = await User.findById(userId);
+
+      if (!user) {
+        return res.status(404).json({ error: "Пользователь не найден" });
+      }
+
+      const favoriteIndex = user.favorites.indexOf(favorites);
+
+      if (favoriteIndex !== -1) {
+        // Если идентификатор здания уже присутствует в массиве favorites, удаляем его
+        user.favorites.splice(favoriteIndex, 1);
+      } else {
+        // Если идентификатор здания не найден в массиве favorites, добавляем его
+        user.favorites.push(favorites);
+      }
+
+      await user.save();
+      res.json(user.favorites);
     } catch (error) {
-      console.log(error);
+      res.status(500).json({ error: error.message });
     }
   },
-  getUser: async (req, res) => {
+  addComparison: async(req,res) => {
+    try {
+    const { comparison } = req.body;
+    const userId = req.params.id;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: "Пользователь не найден" });
+    }
+
+    const comparisonIndex = user.comparison.indexOf(comparison);
+
+    if (comparisonIndex !== -1) {
+      // Если идентификатор здания уже присутствует в массиве favorites, удаляем его
+      user.comparison.splice(comparisonIndex, 1);
+    } else {
+      // Если идентификатор здания не найден в массиве favorites, добавляем его
+      user.comparison.push(comparison);
+    }
+
+    await user.save();
+    res.json(user.comparison);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+  },
+  getUsers: async (req, res) => {
     try {
       const users = await User.find();
       res.json(users);
@@ -51,7 +91,14 @@ module.exports.userController = {
       res.json({ error: "Ошибка при удалении user" });
     }
   },
-
+  getOneUser: async (req, res) => {
+    try {
+      const data = await User.findById(req.user.id);
+      res.json(data);
+    } catch (error) {
+      return res.status(404).json(error.toString());
+    }
+  },
   login: async (req, res) => {
     const { email, password } = req.body;
     const condidate = await User.findOne({ email });
