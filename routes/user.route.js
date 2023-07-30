@@ -27,6 +27,7 @@ router.post(
   router.delete("/user/:id", authMiddleware, userController.deleteUserById);
 
 router.patch('/addFavorites/:id', userController.addFavorites)
+router.patch('/addComparison/:id', userController.addComparison)
 router.get('/user', authMiddleware, userController.getOneUser)
 
   module.exports = router;
